@@ -20,8 +20,8 @@ void build_summ(tree_runner<field, note> & summ_tree, char & oper)
 	
 	if (summ_tree.is_abstract())
 	{
-		summ_tree.create_node();			//создаем узел для знака +- 
-		ooperator_under(summ_tree) = '+'; //  он унарный
+		summ_tree.create_node();			//Г±Г®Г§Г¤Г ГҐГ¬ ГіГ§ГҐГ« Г¤Г«Гї Г§Г­Г ГЄГ  +- 
+		ooperator_under(summ_tree) = '+'; //  Г®Г­ ГіГ­Г Г°Г­Г»Г©
 	}
 
 	while (true)
@@ -37,7 +37,7 @@ void build_summ(tree_runner<field, note> & summ_tree, char & oper)
 			build_fract(fract, temp_oper);
 			summ_tree.note.to_calculate = fract.note.to_calculate;
 			if (fract.is_left_child())
-				fract.swap_child_position(); // меняем направление валентности на правую
+				fract.swap_child_position(); // Г¬ГҐГ­ГїГҐГ¬ Г­Г ГЇГ°Г ГўГ«ГҐГ­ГЁГҐ ГўГ Г«ГҐГ­ГІГ­Г®Г±ГІГЁ Г­Г  ГЇГ°Г ГўГіГѕ
 
 			//cout << "retern_to_summ" << endl;
 
@@ -53,12 +53,12 @@ void build_summ(tree_runner<field, note> & summ_tree, char & oper)
 
 			else if ((temp_oper == '-') + (temp_oper == '+'))
 			{
-				summ_tree.unite_with_subtree(fract); // прикрепляем правого сына
+				summ_tree.unite_with_subtree(fract); // ГЇГ°ГЁГЄГ°ГҐГЇГ«ГїГҐГ¬ ГЇГ°Г ГўГ®ГЈГ® Г±Г»Г­Г 
 				to_make_intermediate_result(summ_tree);
 				
 				cout << temp_oper;
 				summ_tree.go_to_parent();
-				summ_tree.create_node();			//создаем узел для знака +-
+				summ_tree.create_node();			//Г±Г®Г§Г¤Г ГҐГ¬ ГіГ§ГҐГ« Г¤Г«Гї Г§Г­Г ГЄГ  +-
 				ooperator_under(summ_tree) = temp_oper;
 				ooperator_is_unary_under( summ_tree) = false;
 				length_of_operator_under(summ_tree) = 1;
@@ -67,7 +67,7 @@ void build_summ(tree_runner<field, note> & summ_tree, char & oper)
 
 			else if ((temp_oper == '=') || (temp_oper == ')'))
 			{
-				summ_tree.unite_with_subtree(fract);// прикрепляем правого сына
+				summ_tree.unite_with_subtree(fract);// ГЇГ°ГЁГЄГ°ГҐГЇГ«ГїГҐГ¬ ГЇГ°Г ГўГ®ГЈГ® Г±Г»Г­Г 
 				to_make_intermediate_result(summ_tree);
 				oper = temp_oper;
 				return;
@@ -118,7 +118,7 @@ void build_fract(tree_runner<field, note> & fract_tree, char & oper)
 
 	if (fract_tree.is_abstract())
 	{
-		fract_tree.create_node();			//сoздаем узел для знака пока он унарный
+		fract_tree.create_node();			//Г±oГ§Г¤Г ГҐГ¬ ГіГ§ГҐГ« Г¤Г«Гї Г§Г­Г ГЄГ  ГЇГ®ГЄГ  Г®Г­ ГіГ­Г Г°Г­Г»Г©
 		ooperator_under(fract_tree) = '/';
 		instr = 0;
 	}
@@ -155,7 +155,7 @@ void build_fract(tree_runner<field, note> & fract_tree, char & oper)
 				cout << '/';
 				ooperator_is_unary_under(fract_tree) = false;
 				length_of_operator_under(fract_tree) = 1;
-				fract_tree.unite_with_subtree(mult); //приклеиваем к узлу '/' дерево произведения в качечтве левого операнда
+				fract_tree.unite_with_subtree(mult); //ГЇГ°ГЁГЄГ«ГҐГЁГўГ ГҐГ¬ ГЄ ГіГ§Г«Гі '/' Г¤ГҐГ°ГҐГўГ® ГЇГ°Г®ГЁГ§ГўГҐГ¤ГҐГ­ГЁГї Гў ГЄГ Г·ГҐГ·ГІГўГҐ Г«ГҐГўГ®ГЈГ® Г®ГЇГҐГ°Г Г­Г¤Г 
 				instr = 1;
 			}
 
@@ -198,7 +198,7 @@ void build_fract(tree_runner<field, note> & fract_tree, char & oper)
 			num.go_to_right_child();
 			fract_tree.disunite_with_subtree(num);
 
-			build_num(num, temp_oper, write_not_null);// возьмем или допределим число не ноль
+			build_num(num, temp_oper, write_not_null);// ГўГ®Г§ГјГ¬ГҐГ¬ ГЁГ«ГЁ Г¤Г®ГЇГ°ГҐГ¤ГҐГ«ГЁГ¬ Г·ГЁГ±Г«Г® Г­ГҐ Г­Г®Г«Гј
 			fract_tree.note.to_calculate = num.note.to_calculate;
 			if(num.is_left_child())
 				num.swap_child_position();
@@ -254,7 +254,7 @@ void build_mult(tree_runner<field, note> & mult_tree, char & oper)
 
 	if (mult_tree.is_abstract())
 	{
-		mult_tree.create_node();			//сщздаем узел для знака * пока он унарный
+		mult_tree.create_node();			//Г±Г№Г§Г¤Г ГҐГ¬ ГіГ§ГҐГ« Г¤Г«Гї Г§Г­Г ГЄГ  * ГЇГ®ГЄГ  Г®Г­ ГіГ­Г Г°Г­Г»Г©
 		ooperator_under(mult_tree) = '*';
 	}
 
@@ -271,7 +271,7 @@ void build_mult(tree_runner<field, note> & mult_tree, char & oper)
 			num.go_to_right_child();
 			mult_tree.disunite_with_subtree(num);
 
-			build_num(num, temp_oper, write);// возьмем или допределим число 
+			build_num(num, temp_oper, write);// ГўГ®Г§ГјГ¬ГҐГ¬ ГЁГ«ГЁ Г¤Г®ГЇГ°ГҐГ¤ГҐГ«ГЁГ¬ Г·ГЁГ±Г«Г® 
 			mult_tree.note.to_calculate = num.note.to_calculate;
 			if (num.is_left_child())
 				num.swap_child_position();
@@ -280,12 +280,12 @@ void build_mult(tree_runner<field, note> & mult_tree, char & oper)
 
 			if (temp_oper == '*')
 			{
-				mult_tree.unite_with_subtree(num); // прикрепляем правого сына
+				mult_tree.unite_with_subtree(num); // ГЇГ°ГЁГЄГ°ГҐГЇГ«ГїГҐГ¬ ГЇГ°Г ГўГ®ГЈГ® Г±Г»Г­Г 
 				to_make_intermediate_result(mult_tree);
 
 				cout << temp_oper;
 				mult_tree.go_to_parent();
-				mult_tree.create_node();			//создаем узел для знака *
+				mult_tree.create_node();			//Г±Г®Г§Г¤Г ГҐГ¬ ГіГ§ГҐГ« Г¤Г«Гї Г§Г­Г ГЄГ  *
 				ooperator_under(mult_tree) = '*';
 				ooperator_is_unary_under(mult_tree) = false;
 				length_of_operator_under(mult_tree) = 1;
@@ -365,7 +365,7 @@ void build_num(tree_runner<field, note> & num_tree, char & oper, config conf)
 					instr = 2;
 			}
 
-			else if (ooperator_under(num_tree) == 0)// доопредилить последовательность цифр
+			else if (ooperator_under(num_tree) == 0)// Г¤Г®Г®ГЇГ°ГҐГ¤ГЁГ«ГЁГІГј ГЇГ®Г±Г«ГҐГ¤Г®ГўГ ГІГҐГ«ГјГ­Г®Г±ГІГј Г¶ГЁГґГ°
 			{
 				temp_oper = 1;
 				temp_num = num_tree.access_field()->number;
@@ -408,7 +408,7 @@ void build_num(tree_runner<field, note> & num_tree, char & oper, config conf)
 			break;
 		}
 
-		case 1:// взять число или токен
+		case 1:// ГўГ§ГїГІГј Г·ГЁГ±Г«Г® ГЁГ«ГЁ ГІГ®ГЄГҐГ­
 		{
 			get_token(temp_num, temp_oper);
 
@@ -423,7 +423,7 @@ void build_num(tree_runner<field, note> & num_tree, char & oper, config conf)
 			break;
 		}
 
-		case 2:// взять ненулевое число или токен
+		case 2:// ГўГ§ГїГІГј Г­ГҐГ­ГіГ«ГҐГўГ®ГҐ Г·ГЁГ±Г«Г® ГЁГ«ГЁ ГІГ®ГЄГҐГ­
 		{
 			do
 			{
@@ -431,7 +431,7 @@ void build_num(tree_runner<field, note> & num_tree, char & oper, config conf)
 					temp_oper = 0;
 				temp_num = 0;
 				get_token(temp_num, temp_oper);
-				if (temp_oper == '0')// распечатка звукового предупреждения
+				if (temp_oper == '0')// Г°Г Г±ГЇГҐГ·Г ГІГЄГ  Г§ГўГіГЄГ®ГўГ®ГЈГ® ГЇГ°ГҐГ¤ГіГЇГ°ГҐГ¦Г¤ГҐГ­ГЁГї
 					to_bell();
 			} while (temp_oper == '0');
 
@@ -497,7 +497,7 @@ void build_num(tree_runner<field, note> & num_tree, char & oper, config conf)
 				num_tree.unite_with_subtree(summ);
 				redetermin_intermediate_result_under(num_tree);
 
-				// ограничения на нулевые значения
+				// Г®ГЈГ°Г Г­ГЁГ·ГҐГ­ГЁГї Г­Г  Г­ГіГ«ГҐГўГ»ГҐ Г§Г­Г Г·ГҐГ­ГЁГї
 				if ((conf == write_not_null) && (intermediate_result_under(summ) == 0))
 				{
 					to_bell();
@@ -564,7 +564,7 @@ void build_num(tree_runner<field, note> & num_tree, char & oper, config conf)
 				}
 			}
 
-			else if (temp_oper = backspace)
+			else if (temp_oper == backspace)
 			{
 				num_tree.delete_node();
 				num_tree.go_to_parent();
@@ -583,7 +583,7 @@ void build_num(tree_runner<field, note> & num_tree, char & oper, config conf)
 				return;
 			}
 
-			else// откроем скобки и скажем будущей сумме в них, что она начнется с "-"
+			else// Г®ГІГЄГ°Г®ГҐГ¬ Г±ГЄГ®ГЎГЄГЁ ГЁ Г±ГЄГ Г¦ГҐГ¬ ГЎГіГ¤ГіГ№ГҐГ© Г±ГіГ¬Г¬ГҐ Гў Г­ГЁГµ, Г·ГІГ® Г®Г­Г  Г­Г Г·Г­ГҐГІГ±Гї Г± "-"
 			{
 				to_bell();
 				cout << "(-";
@@ -606,14 +606,14 @@ void build_num(tree_runner<field, note> & num_tree, char & oper, config conf)
 			break;
 		}
 
-		case 6:// лавинообразное вычисление результата
+		case 6:// Г«Г ГўГЁГ­Г®Г®ГЎГ°Г Г§Г­Г®ГҐ ГўГ»Г·ГЁГ±Г«ГҐГ­ГЁГҐ Г°ГҐГ§ГіГ«ГјГІГ ГІГ 
 		{
 			cout << ')';
 			num_tree.note.to_calculate = true;//
 			length_of_operator_under(num_tree) = 1;
 			redetermin_intermediate_result_under(num_tree);
 			num_tree.go_to_parent();
-			to_make_intermediate_result(num_tree); //в том числе убирает вложенные скобки
+			to_make_intermediate_result(num_tree); //Гў ГІГ®Г¬ Г·ГЁГ±Г«ГҐ ГіГЎГЁГ°Г ГҐГІ ГўГ«Г®Г¦ГҐГ­Г­Г»ГҐ Г±ГЄГ®ГЎГЄГЁ
 			oper = '=';
 			return;
 			break;
@@ -641,7 +641,7 @@ void build_num(tree_runner<field, note> & num_tree, char & oper, config conf)
 
 void transforme_second_summ_to_first(tree_runner<field, note> & summ1, tree_runner<field, note> & summ2)
 {
-	// считается, что первый бегунок над оператором +, а второй над скобкой, под которой идет вторая сумма
+	// Г±Г·ГЁГІГ ГҐГІГ±Гї, Г·ГІГ® ГЇГҐГ°ГўГ»Г© ГЎГҐГЈГіГ­Г®ГЄ Г­Г Г¤ Г®ГЇГҐГ°Г ГІГ®Г°Г®Г¬ +, Г  ГўГІГ®Г°Г®Г© Г­Г Г¤ Г±ГЄГ®ГЎГЄГ®Г©, ГЇГ®Г¤ ГЄГ®ГІГ®Г°Г®Г© ГЁГ¤ГҐГІ ГўГІГ®Г°Г Гї Г±ГіГ¬Г¬Г 
 
 	bool abstr;
 
@@ -657,18 +657,18 @@ void transforme_second_summ_to_first(tree_runner<field, note> & summ1, tree_runn
 	if (!servant.is_abstract())
 	{
 		summ1.disunite_with_subtree(servant);
-		while (summ2.go_to_left_child())// перейти со скобки ) на оператор
+		while (summ2.go_to_left_child())// ГЇГҐГ°ГҐГ©ГІГЁ Г±Г® Г±ГЄГ®ГЎГЄГЁ ) Г­Г  Г®ГЇГҐГ°Г ГІГ®Г°
 			;
-		summ2.go_to_parent();// теперь этот бегунок в начале второй суммы
+		summ2.go_to_parent();// ГІГҐГЇГҐГ°Гј ГЅГІГ®ГІ ГЎГҐГЈГіГ­Г®ГЄ Гў Г­Г Г·Г Г«ГҐ ГўГІГ®Г°Г®Г© Г±ГіГ¬Г¬Г»
 		left_limit = summ2.reduplicate_tree_runner();
 		summ2.unite_with_subtree(servant);
 
 
 
 		while (ooperator_under(summ2)!= ')')
-			summ2.go_to_parent();// а теперь снова на скобке
+			summ2.go_to_parent();// Г  ГІГҐГЇГҐГ°Гј Г±Г­Г®ГўГ  Г­Г  Г±ГЄГ®ГЎГЄГҐ
 
-		servant.note.intermediate_result = intermediate_result_under(servant);// дальше корректируем промежуточные значения
+		servant.note.intermediate_result = intermediate_result_under(servant);// Г¤Г Г«ГјГёГҐ ГЄГ®Г°Г°ГҐГЄГІГЁГ°ГіГҐГ¬ ГЇГ°Г®Г¬ГҐГ¦ГіГІГ®Г·Г­Г»ГҐ Г§Г­Г Г·ГҐГ­ГЁГї
 		while (ooperator_under(servant) != ')')
 		{
 			servant.go_to_parent();
@@ -721,7 +721,7 @@ void transforme_second_summ_to_first(tree_runner<field, note> & summ1, tree_runn
 
 void transform_second_mult_to_first(tree_runner<field, note> & mult1, tree_runner<field, note> & mult2)
 {
-	// cчитается, что щба бегунка над операторами *: первый над тем к которому присоединяют, а вторй - надглавным
+	// cГ·ГЁГІГ ГҐГІГ±Гї, Г·ГІГ® Г№ГЎГ  ГЎГҐГЈГіГ­ГЄГ  Г­Г Г¤ Г®ГЇГҐГ°Г ГІГ®Г°Г Г¬ГЁ *: ГЇГҐГ°ГўГ»Г© Г­Г Г¤ ГІГҐГ¬ ГЄ ГЄГ®ГІГ®Г°Г®Г¬Гі ГЇГ°ГЁГ±Г®ГҐГ¤ГЁГ­ГїГѕГІ, Г  ГўГІГ®Г°Г© - Г­Г Г¤ГЈГ«Г ГўГ­Г»Г¬
 
 	bool abstr;
 
@@ -738,16 +738,16 @@ void transform_second_mult_to_first(tree_runner<field, note> & mult1, tree_runne
 
 		while (mult2.go_to_left_child())
 			;
-		mult2.go_to_parent();// теперь этот бегунок в начале второго произведения
+		mult2.go_to_parent();// ГІГҐГЇГҐГ°Гј ГЅГІГ®ГІ ГЎГҐГЈГіГ­Г®ГЄ Гў Г­Г Г·Г Г«ГҐ ГўГІГ®Г°Г®ГЈГ® ГЇГ°Г®ГЁГ§ГўГҐГ¤ГҐГ­ГЁГї
 		left_limit = mult2.reduplicate_tree_runner();
 		mult2.unite_with_subtree(servant);
 
 
 
 		while (ooperator_under(mult2) != '/')
-			mult2.go_to_parent();// а теперь снова на '/'
+			mult2.go_to_parent();// Г  ГІГҐГЇГҐГ°Гј Г±Г­Г®ГўГ  Г­Г  '/'
 
-		servant.note.intermediate_result = intermediate_result_under(servant);// дальше корректируем промежуточные значения
+		servant.note.intermediate_result = intermediate_result_under(servant);// Г¤Г Г«ГјГёГҐ ГЄГ®Г°Г°ГҐГЄГІГЁГ°ГіГҐГ¬ ГЇГ°Г®Г¬ГҐГ¦ГіГІГ®Г·Г­Г»ГҐ Г§Г­Г Г·ГҐГ­ГЁГї
 		while (ooperator_under(servant) != '/')
 		{
 			servant.go_to_parent();
@@ -799,8 +799,8 @@ void transform_second_mult_to_first(tree_runner<field, note> & mult1, tree_runne
 
 void transform_fract_and_mult_to_fract(tree_runner<field, note> & mult, tree_runner<field, note> & fract)
 {
-	//считается, что оба бегунка находятся над своими операторами 
-	// по результату слитая дробь будет в скобках, а бегунки над * перед ними
+	//Г±Г·ГЁГІГ ГҐГІГ±Гї, Г·ГІГ® Г®ГЎГ  ГЎГҐГЈГіГ­ГЄГ  Г­Г ГµГ®Г¤ГїГІГ±Гї Г­Г Г¤ Г±ГўГ®ГЁГ¬ГЁ Г®ГЇГҐГ°Г ГІГ®Г°Г Г¬ГЁ 
+	// ГЇГ® Г°ГҐГ§ГіГ«ГјГІГ ГІГі Г±Г«ГЁГІГ Гї Г¤Г°Г®ГЎГј ГЎГіГ¤ГҐГІ Гў Г±ГЄГ®ГЎГЄГ Гµ, Г  ГЎГҐГЈГіГ­ГЄГЁ Г­Г Г¤ * ГЇГҐГ°ГҐГ¤ Г­ГЁГ¬ГЁ
 
 	bool abstr;
 
@@ -831,11 +831,11 @@ void transform_fract_and_mult_to_fract(tree_runner<field, note> & mult, tree_run
 
 	print_tree_from(left_limit);
 
-	transform_second_mult_to_first(mult, fract);// оба над главным *
+	transform_second_mult_to_first(mult, fract);// Г®ГЎГ  Г­Г Г¤ ГЈГ«Г ГўГ­Г»Г¬ *
 
 	erase_up_to(left_limit);
 
-	mult.go_to_parent();					// теперь над"/" 
+	mult.go_to_parent();					// ГІГҐГЇГҐГ°Гј Г­Г Г¤"/" 
 
 	if (mult.is_abstract())
 	{
@@ -925,8 +925,8 @@ void transform_fract_and_mult_to_fract(tree_runner<field, note> & mult, tree_run
 	 if (choise == 'y')
 	 {
 		 to_make_intermediate_result(fract);
-												    // сейчас мы отделим дробь и, облочив ее в скобки, прикрепим обратно 
-													// к слегка достроенному дереву
+												    // Г±ГҐГ©Г·Г Г± Г¬Г» Г®ГІГ¤ГҐГ«ГЁГ¬ Г¤Г°Г®ГЎГј ГЁ, Г®ГЎГ«Г®Г·ГЁГў ГҐГҐ Гў Г±ГЄГ®ГЎГЄГЁ, ГЇГ°ГЁГЄГ°ГҐГЇГЁГ¬ Г®ГЎГ°Г ГІГ­Г® 
+													// ГЄ Г±Г«ГҐГЈГЄГ  Г¤Г®Г±ГІГ°Г®ГҐГ­Г­Г®Г¬Гі Г¤ГҐГ°ГҐГўГі
 		 if (fract.is_left_child())
 			 fract.swap_child_position();
 
@@ -1190,7 +1190,7 @@ void to_make_intermediate_result(tree_runner<field, note> & runner)
 				length_of_operator_under(servant) = 0;
 				intermediate_result_under(servant) = 0 - intermediate_result_under(servant);
 
-				print_tree_from(runner);// дальше будет все как в анекдоте про чайник с водой и математика
+				print_tree_from(runner);// Г¤Г Г«ГјГёГҐ ГЎГіГ¤ГҐГІ ГўГ±ГҐ ГЄГ ГЄ Гў Г Г­ГҐГЄГ¤Г®ГІГҐ ГЇГ°Г® Г·Г Г©Г­ГЁГЄ Г± ГўГ®Г¤Г®Г© ГЁ Г¬Г ГІГҐГ¬Г ГІГЁГЄГ 
 
 				servant.go_to_parent();
 				servant.go_to_parent();
